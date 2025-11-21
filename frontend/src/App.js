@@ -160,6 +160,7 @@ function App() {
 
       <footer>
         <p>Every donation makes a difference in the fight against gender-based violence.</p>
+        <p><a href="mailto:womendontoweyou@protonmail.com">Contact Site Owner</a></p>
       </footer>
     </div>
   );
