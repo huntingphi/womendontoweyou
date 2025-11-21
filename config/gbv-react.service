@@ -1,0 +1,16 @@
+[Unit]
+Description=GBV Site React Frontend
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/opt/gbv-site
+Environment=HOST=0.0.0.0
+Environment=REACT_APP_API_URL=
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

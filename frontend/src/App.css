@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+header {
+  background: linear-gradient(135deg, #6b46c1, #9333ea);
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.filter-section label {
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+.filter-section select {
+  padding: 0.5rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+}
+
+.organizations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.org-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.org-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.org-card h3 {
+  color: #6b46c1;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.org-title-link {
+  color: #6b46c1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.org-title-link:hover {
+  color: #553c9a;
+  text-decoration: underline;
+}
+
+.category {
+  background: #e0e7ff;
+  color: #6366f1;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.org-card p {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.donate-btn {
+  display: inline-block;
+  background: #10b981;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.donate-btn:hover {
+  background: #059669;
+}
+
+.emergency-info {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.emergency-info h2 {
+  color: #dc2626;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.emergency-card {
+  background: #fef2f2;
+  border: 2px solid #fecaca;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.emergency-card h4 {
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+}
+
+.emergency-card p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #991b1b;
+}
+
+footer {
+  background: #374151;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .organizations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .org-card {
+    padding: 1.5rem;
+  }
+}
