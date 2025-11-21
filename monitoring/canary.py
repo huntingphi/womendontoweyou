@@ -4,43 +4,47 @@ import random
 import sys
 from datetime import datetime
 
-# List of donation URLs to test
-donation_urls = [
-    'https://tears.co.za/donate/',
-    'https://www.uyinenefoundation.co.za/#donate',
-    'https://rapecrisis.org.za/donate/',
-    'https://mosaic.org.za/donate/',
-    'https://www.lifeline.org.za/Make-a-Donation.html',
-    'https://www.wmaca.org/how-to-help/',
-    'https://www.nsmsa.org.za/donate/',
-    'https://www.sadag.org/index.php?option=com_content&view=article&id=1896&Itemid=140'
-]
+# Test main site via CloudFront
+def test_main_site():
+    try:
+        response = requests.get('https://www.womendontoweyou.co.za', timeout=10)
+        if response.status_code == 200 and 'GBV Support' in response.text:
+            return True
+    except:
+        pass
+    return False
 
-def test_site():
+# Test API via CloudFront
+def test_donation_link():
+    try:
+        # Test API endpoint via CloudFront
+        api_response = requests.post('https://www.womendontoweyou.co.za/track/donation-click', 
+                                   json={'organization': 'test'}, timeout=5)
+        if api_response.status_code == 200:
+            return True
+    except:
+        pass
+    return False
+
+def main():
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
-    try:
-        # Test main site via CloudFront
-        response = requests.get('https://www.womendontoweyou.co.za/', timeout=10)
-        if response.status_code == 200:
-            print(f'{timestamp} - Main site OK (200)')
-        else:
-            print(f'{timestamp} - Main site ERROR ({response.status_code})')
-            return False
-            
-        # Test random donation link
-        random_url = random.choice(donation_urls)
-        response = requests.get(random_url, timeout=10)
-        if response.status_code == 200:
-            print(f'{timestamp} - Donation link OK: {random_url}')
-        else:
-            print(f'{timestamp} - Donation link ERROR ({response.status_code}): {random_url}')
-            
-        return True
-        
-    except Exception as e:
-        print(f'{timestamp} - ERROR: {str(e)}')
-        return False
+    main_ok = test_main_site()
+    api_ok = test_donation_link()
+    
+    status = "OK" if (main_ok and api_ok) else "FAIL"
+    
+    log_entry = f"[{timestamp}] Status: {status} | Main: {'OK' if main_ok else 'FAIL'} | API: {'OK' if api_ok else 'FAIL'}"
+    
+    print(log_entry)
+    
+    # Log to file
+    with open('/home/ec2-user/canary.log', 'a') as f:
+        f.write(log_entry + '\n')
+    
+    # Exit with error code if any test failed
+    if not (main_ok and api_ok):
+        sys.exit(1)
 
 if __name__ == '__main__':
-    test_site()
+    main()
