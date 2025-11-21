@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://www.womendontoweyou.co.za/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://www.womendontoweyou.co.za';
 
 export const trackPageVisit = async () => {
   try {
